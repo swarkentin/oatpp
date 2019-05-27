@@ -43,3 +43,6 @@ cmake-build-debug/
 build/
 srt/build/
 test/build/
+
+# VS Code
+.vscode
