@@ -5,9 +5,7 @@ services:
 install:
   - echo "Nothing to install"
 script:
-  - echo "No additional scripts"
-after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then run_mayhem.sh; fi
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then run-mayhem.sh; fi
 env:
   global:
     - MAYHEM_URL=https://beta.forallsecure.com
