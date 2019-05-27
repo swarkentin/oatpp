@@ -32,4 +32,4 @@ docker run -it --rm \
        -e MAYHEM_TOKEN="$MAYHEM_TOKEN" \
        -e MAYHEM_URL="$MAYHEM_URL" \
        $BUILD_TAG \
-       /bin/sh -c "mayhem login && mayhem run ./ && mayhem wait --junit mayhem_results.xml $(oatpp/oatpp-mayhem-harness | head -1 | cut -f3 --delim=' ') && cat mayhem_results.xml"
+       /bin/sh -c "mayhem login && mayhem run ./ && mayhem wait --junit mayhem_results.xml $(mayhem show oatpp/oatpp-mayhem-harness | head -1 | cut -f3 --delim=' ') && cat mayhem_results.xml"
