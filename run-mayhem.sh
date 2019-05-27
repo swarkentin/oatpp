@@ -13,7 +13,7 @@ docker build --build-arg MAYHEM_CREDS="$MAYHEM_CREDS" \
              -f build.Dockerfile \
              .
 # Create a container with the executable that will be fuzzed
-docker run -it --rm BUILD_TAG \
+docker run -it --rm $BUILD_TAG \
        /bin/sh -c "docker build -t beta.forallsecure.com:5000/forallsecure/oatpp-mayhem-harness -f mayhem.Dockerfile ."
 
 # Upload fuzzable image to mayem so that a new mayhem run can be created
