@@ -32,4 +32,12 @@ docker run -it --rm \
        -e MAYHEM_TOKEN="$MAYHEM_TOKEN" \
        -e MAYHEM_URL="$MAYHEM_URL" \
        $BUILD_TAG \
-       /bin/sh -c "mayhem login && mayhem run ./ && mayhem wait && mayhem show"
+       /bin/sh -c "mayhem login && mayhem run ./"
+
+# Wait for run to finish and export results in junit format
+docker run -it --rm \
+       -e MAYHEM_CREDS="$MAYHEM_CREDS" \
+       -e MAYHEM_TOKEN="$MAYHEM_TOKEN" \
+       -e MAYHEM_URL="$MAYHEM_URL" \
+       $BUILD_TAG \
+       /bin/sh -c "mayhem wait --junit mayhem_results.xml $(oatpp/oatpp-mayhem-harness | head -1 | cut -f3 --delim=' ') && cat mayhem_results.xml"
