@@ -7,7 +7,7 @@ install:
 script:
   - echo "No additional scripts"
 after_success:
-  - $TRAVIS_BRANCH == "master" && run_mayhem.sh
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then run_mayhem.sh; fi
 env:
   global:
     - MAYHEM_URL=https://beta.forallsecure.com
