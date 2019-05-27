@@ -8,7 +8,8 @@ script:
   - echo "No additional scripts"
 after_success:
   - docker --version
-  - docker build --build-arg MAYHEM_CREDS="$MAYHEM_CREDS" --build-arg MAYHEM_URL="$MAYHEM_URL" -t forallsecure/oatpp-mayhem-build .
+  - docker build --build-arg MAYHEM_CREDS="$MAYHEM_CREDS" --build-arg MAYHEM_URL="$MAYHEM_URL" -t forallsecure/oatpp-mayhem-build -f build.Dockerfile .
+  - docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock forallsecure/oatpp-mayhem-build /bin/sh -c "docker build -t beta.forallsecure.com:5000/forallsecure/oatpp-mayhem-harness -f mayhem.Dockerfile ."
 env:
   global:
     - MAYHEM_URL=https://beta.forallsecure.com
