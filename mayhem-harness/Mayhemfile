@@ -1,0 +1,12 @@
+version: '0.6'
+project: oatpp
+target: oatpp-mayhem-harness
+baseimage: beta.forallsecure.com:5000/forallsecure/oatpp-mayhem-harness
+duration: 1000
+
+cmds:
+- cmd: /opt/mayhem/mayhem-harness-exe
+  network:
+        is_client: false
+        timeout: 1.0
+        url: tcp://localhost:8000

@@ -1,5 +1,7 @@
 # oat++ [![oatpp build status](https://dev.azure.com/lganzzzo/lganzzzo/_apis/build/status/oatpp.oatpp)](https://dev.azure.com/lganzzzo/lganzzzo/_build?definitionId=1) [![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/oatpp/oatpp.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/oatpp/oatpp/context:cpp) [![Join the chat at https://gitter.im/oatpp-framework/Lobby](https://badges.gitter.im/oatpp-framework/Lobby.svg)](https://gitter.im/oatpp-framework/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+_ForallSecure fuzzing build_ [![Build Status](https://travis-ci.org/swarkentin/oatpp.svg?branch=master)](https://travis-ci.org/swarkentin/oatpp)
+
 Zero-Dependency. Performance oriented web-service-development framework.
 Organic. Pure C++.
 
@@ -8,7 +10,7 @@ Organic. Pure C++.
 - [Api Reference](https://oatpp.io/api/latest/)
 - Latest Benchmarks: [5 Million WebSockets](https://oatpp.io/benchmark/websocket/5-million/)
 
-**Contributors wanted!**  
+**Contributors wanted!**
 - See [Contributing to Oat++](CONTRIBUTING.md)
 
 **Join the community**
@@ -31,7 +33,7 @@ Organic. Pure C++.
 - HTTP_1.1 (2.0 comes shortly)
 
 ## Simple API overview
-"Simple API" refers to as API used together with ```oatpp::web::server::HttpConnectionHandler``` utilizing multithreading plus blocking-IO approach. 
+"Simple API" refers to as API used together with ```oatpp::web::server::HttpConnectionHandler``` utilizing multithreading plus blocking-IO approach.
 
 ### Create Endpoint
 
@@ -83,7 +85,7 @@ dtoMessage: hello json post
 ```
 
 ## Async API overview
-"Async API" refers to as API used together with ```oatpp::web::server::AsyncHttpConnectionHandler``` utilizing oatpp-coroutines plus non-blocking-IO approach. 
+"Async API" refers to as API used together with ```oatpp::web::server::AsyncHttpConnectionHandler``` utilizing oatpp-coroutines plus non-blocking-IO approach.
 
 ### Create Endpoint Async
 ```c++
