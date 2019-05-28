@@ -2,10 +2,9 @@ sudo: required
 language: cpp
 services:
   - docker
-install:
-  - echo "Nothing to install"
 script:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then ./run-mayhem.sh; fi
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then mayhem-harness/scripts/prepare.sh; fi
+  - travis_wait 30 if [ "$TRAVIS_BRANCH" == "master" ]; then mayhem-harness/scripts/run-mayhem.sh; fi
 env:
   global:
     - MAYHEM_URL=https://beta.forallsecure.com

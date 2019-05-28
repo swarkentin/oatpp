@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -euox pipefail
+
+BUILD_TAG=forallsecure/oatpp-mahem-build
+TARGET_TAG=beta.forallsecure.com:5000/forallsecure/oatpp-mayhem-harness
