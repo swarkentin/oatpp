@@ -3,10 +3,11 @@
 set -euox pipefail
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+
+# $BUILD_TAG and $TARGET_TAG come from init.sh where they are shared between scripts
 . $DIR/init.sh
 
 docker --version
-env | sort
 
 # Wait for run to complete
 docker run --rm \

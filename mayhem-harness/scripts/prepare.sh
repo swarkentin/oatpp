@@ -3,6 +3,8 @@
 set -euox pipefail
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+
+# $BUILD_TAG and $TARGET_TAG come from init.sh where they are shared between scripts
 . $DIR/init.sh
 
 docker --version
@@ -13,13 +15,13 @@ docker build --build-arg MAYHEM_CREDS="$MAYHEM_CREDS" \
              -t $BUILD_TAG \
              -f build.Dockerfile \
              .
-# # Create a container with the executable that will be fuzzed
+# Create a container with the executable that will be fuzzed
 docker run -t --rm \
        -v /var/run/docker.sock:/var/run/docker.sock \
        $BUILD_TAG \
        /bin/sh -c "docker build -t $TARGET_TAG -f mayhem.Dockerfile ."
 
-# # Upload fuzzable image to mayem so that a new mayhem run can be created
+# Upload fuzzable image to mayem so that a new mayhem run can be created
 docker run -t --rm \
        -e MAYHEM_CREDS="$MAYHEM_CREDS" \
        -e MAYHEM_TOKEN="$MAYHEM_TOKEN" \
