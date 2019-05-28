@@ -46,3 +46,6 @@ test/build/
 
 # VS Code
 .vscode
+
+# Docker volume mounts
+.config
