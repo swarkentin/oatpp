@@ -42,7 +42,7 @@ run=`echo "$run" | tail -1`
 echo "Waiting for run '$run'..."
 
 # Wait for run to complete
-docker run -it --rm \
+travis_wait 30 docker run -it --rm \
        -e MAYHEM_CREDS="$MAYHEM_CREDS" \
        -e MAYHEM_TOKEN="$MAYHEM_TOKEN" \
        -v "$DIR/.config/mayhem:/root/.config/mayhem" \
