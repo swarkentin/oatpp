@@ -14,6 +14,6 @@ docker run --rm \
        -e MAYHEM_CREDS="$MAYHEM_CREDS" \
        -e MAYHEM_TOKEN="$MAYHEM_TOKEN" \
        -e MAYHEM_URL="$MAYHEM_URL" \
-       -v $(pwd)/results:/workdir/results \
+      -v $(pwd)/results:/workdir/results \
        $BUILD_TAG \
-       /bin/bash -c "mayhem login && mayhem wait --junit results/mayhem_results.xml \$(mayhem run ./) && cat mayhem_results.xml"
+       /bin/bash -c "mayhem login && mayhem wait --junit results/mayhem_results.xml \$(mayhem run --regression ./) && cat mayhem_results.xml"
