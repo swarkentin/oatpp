@@ -13,31 +13,22 @@ services:
 jobs:
   include:
     #
-    # Prepare the build image
+    # Run regressions on non-master branches to make sure nothing broke
     #
-    - stage: build
-      script: mayhem-harness/scripts/prepare.sh || travis_terminate 1;
-
-    #
-    # [!master] Run regression tests against all non-master branches
-    #
-    - name: mayhem-regression
+    - stage: regression
       if: branch NOT IN (master)
-      script: travis_wait 30 mayhem-harness/scripts/run-mayhem-regression.sh;
-
+      script:
+        - mayhem-harness/scripts/prepare.sh || travis_terminate 1;
+        - travis_wait 30 mayhem-harness/scripts/run-mayhem-regression.sh;
     #
-    # [master] Run all tests against all master branch
+    # Run release tests on master branch
     #
-    - name: mayhem-run
+    - stage: release
       if: branch = master
-      script: travis_wait 30 mayhem-harness/scripts/run-mayhem.sh;
-
-    #
-    # Now run SonarQube to ingest the output of the output of the analysis
-    #
-    - name: sonarqube
-      if: branch = master
-      script: sonar-scanner || travis_terminate 1;
+      script:
+        - mayhem-harness/scripts/prepare.sh || travis_terminate 1;
+        - travis_wait 30 mayhem-harness/scripts/run-mayhem.sh;
+        - sonar-scanner || travis_terminate 1;
 
 env:
   global:
