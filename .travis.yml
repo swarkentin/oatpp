@@ -10,10 +10,15 @@ addons:
 services:
 - docker
 
-script:
-- sonar-scanner
-- if [ "$TRAVIS_BRANCH" == "master" ]; then mayhem-harness/scripts/prepare.sh; fi
-- if [ "$TRAVIS_BRANCH" == "master" ]; then travis_wait 30 mayhem-harness/scripts/run-mayhem.sh; fi
+jobs:
+  include:
+    - stage: sonarqube
+      if: branch = master
+      script: sonar-scanner || travis_terminate 1;
+    - stage: mayhem
+      if: branch = master
+      script: mayhem-harness/scripts/prepare.sh || travis_terminate 1;
+    - script: travis_wait 30 mayhem-harness/scripts/run-mayhem.sh; || travis_terminate 1;
 
 env:
   global:
