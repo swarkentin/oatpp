@@ -8,7 +8,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 . $DIR/init.sh
 
 echo $(pwd)
-echo $(DIR)
 
 docker --version
 
