@@ -13,6 +13,7 @@ services:
 jobs:
   include:
     - stage: sonarqube
+      if: branch = master
       script: sonar-scanner || travis_terminate 1;
     - stage: mayhem
       if: branch = master
