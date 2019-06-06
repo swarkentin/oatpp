@@ -7,6 +7,9 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 # $BUILD_TAG and $TARGET_TAG come from init.sh where they are shared between scripts
 . $DIR/init.sh
 
+echo $(pwd)
+echo $(DIR)
+
 docker --version
 
 # Wait for run to complete
