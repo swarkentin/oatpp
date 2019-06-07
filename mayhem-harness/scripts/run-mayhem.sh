@@ -16,8 +16,8 @@ docker run --rm \
        -e MAYHEM_CREDS="$MAYHEM_CREDS" \
        -e MAYHEM_TOKEN="$MAYHEM_TOKEN" \
        -e MAYHEM_URL="$MAYHEM_URL" \
-       -v $(pwd)/mayhem-harness/corpus:/workdir/mayhem-harness/corpus \
-       -v $(pwd)/test-results:/workdir/mayhem-harness/test-results \
+       -v $(pwd)/mayhem-harness/corpus:$(pwd)/mayhem-harness/corpus \
+       -v $(pwd)/test-results:$(pwd)/mayhem-harness/test-results \
        $BUILD_TAG \
        /bin/bash -c "mayhem login && mayhem wait --junit test-results/mayhem_results.xml \$(mayhem run ./) && mayhem sync ./"
 
@@ -26,7 +26,7 @@ docker run --rm \
        -e MAYHEM_CREDS="$MAYHEM_CREDS" \
        -e MAYHEM_TOKEN="$MAYHEM_TOKEN" \
        -e MAYHEM_URL="$MAYHEM_URL" \
-       -v $(pwd)/bw_output:/workdir/bw_output \
+       -v $(pwd)/bw_output:$(pwd)/bw_output \
        $BUILD_TAG \
        /bin/bash -c "cp -R bw_output/* ../bw_output"
 
@@ -35,8 +35,8 @@ docker run --rm \
        -e MAYHEM_CREDS="$MAYHEM_CREDS" \
        -e MAYHEM_TOKEN="$MAYHEM_TOKEN" \
        -e MAYHEM_URL="$MAYHEM_URL" \
-       -v $(pwd)/mayhem-harness/corpus:/workdir/mayhem-harness/corpus \
-       -v $(pwd)/coverage-results:/workdir/mayhem-harness/coverage-results \
+       -v $(pwd)/mayhem-harness/corpus:$(pwd)/mayhem-harness/corpus \
+       -v $(pwd)/coverage-results:$(pwd)/mayhem-harness/coverage-results \
        $BUILD_TAG \
        /bin/bash -c "cd build && make test && cd .. && scripts/get-coverage.sh && cp gcov/* coverage-results/"
 

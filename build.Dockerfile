@@ -28,8 +28,8 @@ RUN curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID"
   && apt-get update \
   && apt-get -y install docker-ce
 
-COPY . /workdir/
-WORKDIR /workdir/mayhem-harness
+COPY . /home/travis/build/swarkentin/oatpp
+WORKDIR /home/travis/build/swarkentin/oatpp/mayhem-harness
 
 # Sonar build wrapper
 RUN curl -o build-wrapper.zip https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip \
