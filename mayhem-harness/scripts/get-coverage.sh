@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -euox pipefail
-
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 # Make sure we are working int he parent folder so that ALL source is covered.
