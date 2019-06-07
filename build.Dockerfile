@@ -31,9 +31,7 @@ RUN mkdir build \
   && cd build \
   && cmake  -DCMAKE_BUILD_TYPE=Debug .. \
   && make && make test \
-  && cd ../.. \
-  && gcovr --xml -r . > coverage.xml
-#&& find . -type f \( -iname \*.gcno -or -iname \*.gcda \) -exec cp {} .. \; \
+  && ../scripts/get-coverage.sh
 
 # Download mayhem cli
 RUN curl -u ${MAYHEM_CREDS} -o mayhem ${MAYHEM_URL}/images/mayhem && chmod +x mayhem &&  mv mayhem /usr/local/bin/
