@@ -29,4 +29,4 @@ docker run --rm \
        -v $(pwd)/mayhem-harness/corpus:/workdir/mayhem-harness/corpus \
        -v $(pwd)/coverage-results:/workdir/mayhem-harness/coverage-results \
        $BUILD_TAG \
-       /bin/bash -c "cd build && make test && ../scripts/get-coverage.sh && cp ../../gcov/* ../../coverage-results/"
+       /bin/bash -c "cd build && make test && cd .. && scripts/get-coverage.sh && cp gcov/* coverage-results/"

@@ -6,7 +6,6 @@ addons:
   sonarcloud:
     organization: "swarkentin-github"
 
-
 services:
 - docker
 

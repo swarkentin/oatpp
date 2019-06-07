@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 # Make sure we are working int he parent folder so that ALL source is covered.
@@ -47,8 +45,9 @@ done
 #
 # Put all of the coverage files together for sonarqube
 #
-mkdir -p gcov
+gcovdir=$DIR/../gcov
+mkdir -p $gcovdir
 for f in $(find . -name "*.gcov")
 do
-  cp $f gcov
+  cp $f $gcovdir
 done
