@@ -18,4 +18,4 @@ docker run --rm \
       -v $(pwd)/coverage-results:/workdir/mayhem-harness/coverage-results \
       -v $(pwd)/mayhem-harness/corpus:/workdir/mayhem-harness/corpus \
        $BUILD_TAG \
-       /bin/bash -c "mayhem login && mayhem wait --junit results/mayhem_results.xml \$(mayhem run --regression ./) && cat results/mayhem_results.xml"
+       /bin/bash -c "mayhem login && mayhem wait --junit test-results/mayhem_results.xml \$(mayhem run --regression ./) && cat results/mayhem_results.xml"

@@ -17,9 +17,9 @@ docker run --rm \
        -e MAYHEM_TOKEN="$MAYHEM_TOKEN" \
        -e MAYHEM_URL="$MAYHEM_URL" \
        -v $(pwd)/mayhem-harness/corpus:/workdir/mayhem-harness/corpus \
-       -v $(pwd)/test-results:/workdir/mayhem-harness/results \
+       -v $(pwd)/test-results:/workdir/mayhem-harness/test-results \
        $BUILD_TAG \
-       /bin/bash -c "mayhem login && mayhem wait --junit results/mayhem_results.xml \$(mayhem run ./) && mayhem sync ./"
+       /bin/bash -c "mayhem login && mayhem wait --junit test-results/mayhem_results.xml \$(mayhem run ./) && mayhem sync ./"
 
 # Get coverage
 docker run --rm \
@@ -30,3 +30,5 @@ docker run --rm \
        -v $(pwd)/coverage-results:/workdir/mayhem-harness/coverage-results \
        $BUILD_TAG \
        /bin/bash -c "cd build && make test && cd .. && scripts/get-coverage.sh && cp gcov/* coverage-results/"
+
+ls -la $(pwd)/coverage-results
