@@ -21,6 +21,15 @@ docker run --rm \
        $BUILD_TAG \
        /bin/bash -c "mayhem login && mayhem wait --junit test-results/mayhem_results.xml \$(mayhem run ./) && mayhem sync ./"
 
+# Extract SonarQube build wrapper output
+docker run --rm \
+       -e MAYHEM_CREDS="$MAYHEM_CREDS" \
+       -e MAYHEM_TOKEN="$MAYHEM_TOKEN" \
+       -e MAYHEM_URL="$MAYHEM_URL" \
+       -v $(pwd)/bw_output:/workdir/bw_output \
+       $BUILD_TAG \
+       /bin/bash -c "cp -R bw_output/* ../bw_output"
+
 # Get coverage
 docker run --rm \
        -e MAYHEM_CREDS="$MAYHEM_CREDS" \
