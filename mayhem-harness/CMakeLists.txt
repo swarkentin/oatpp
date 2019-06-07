@@ -6,6 +6,13 @@ project(${project_name}-loader)
 
 include(ExternalProject)
 
+###################################################################################################
+## Prepare gcov instrumentation
+##
+include(../cmake/CodeCoverage.cmake)
+APPEND_COVERAGE_COMPILER_FLAGS()
+
+
 #############################################################################
 ## load all dependencies
 

@@ -6,6 +6,13 @@ project(${project_name})
 
 set(CMAKE_CXX_STANDARD 11)
 
+###################################################################################################
+## Prepare gcov instrumentation
+##
+include(../../cmake/CodeCoverage.cmake)
+APPEND_COVERAGE_COMPILER_FLAGS()
+
+
 add_library(${project_name}-lib
         src/AppComponent.hpp
         src/controller/MyController.cpp

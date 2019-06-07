@@ -3,6 +3,13 @@ cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
 file(STRINGS "${CMAKE_CURRENT_LIST_DIR}/src/oatpp/core/base/Environment.hpp" OATPP_VERSION_MACRO REGEX "#define OATPP_VERSION \"[0-9]+.[0-9]+.[0-9]+\"$")
 string(REGEX REPLACE "#define OATPP_VERSION \"([0-9]+.[0-9]+.[0-9]+)\"$" "\\1" oatpp_VERSION "${OATPP_VERSION_MACRO}")
 
+
+###################################################################################################
+## Prepare gcov instrumentation
+##
+include(cmake/CodeCoverage.cmake)
+APPEND_COVERAGE_COMPILER_FLAGS()
+
 ###################################################################################################
 ## These variables are passed to oatpp-module-install.cmake script
 ## use these variables to configure module installation
@@ -62,6 +69,8 @@ add_definitions (
         -DOATPP_THREAD_DISTRIBUTED_MEM_POOL_SHARDS_COUNT=${OATPP_THREAD_DISTRIBUTED_MEM_POOL_SHARDS_COUNT}
         -DOATPP_ASYNC_EXECUTOR_THREAD_NUM_DEFAULT=${OATPP_ASYNC_EXECUTOR_THREAD_NUM_DEFAULT}
 )
+
+# add_definitions(-fprofile-arcs -ftest-coverage)h
 
 message("\n############################################################################\n")
 

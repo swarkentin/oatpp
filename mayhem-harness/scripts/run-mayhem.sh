@@ -17,5 +17,16 @@ docker run --rm \
        -e MAYHEM_TOKEN="$MAYHEM_TOKEN" \
        -e MAYHEM_URL="$MAYHEM_URL" \
        -v $(pwd)/results:/workdir/mayhem-harness/results \
+       -v $(pwd)/coverage-results:/workdir/mayhem-harness/coverage-results \
+       -v $(pwd)/mayhem-harness/corpus:/workdir/mayhem-harness/corpus \
        $BUILD_TAG \
-       /bin/bash -c "mayhem login && mayhem wait --junit results/mayhem_results.xml \$(mayhem run ./) && cat results/mayhem_results.xml"
+       /bin/bash -c "mayhem login && mayhem wait --junit results/mayhem_results.xml \$(mayhem run ./) && mayhem sync ./"
+
+# Get coverage
+docker run --rm \
+       -e MAYHEM_CREDS="$MAYHEM_CREDS" \
+       -e MAYHEM_TOKEN="$MAYHEM_TOKEN" \
+       -e MAYHEM_URL="$MAYHEM_URL" \
+       -v $(pwd)/mayhem-harness/corpus:/workdir/mayhem-harness/corpus \
+       $BUILD_TAG \
+       /bin/bash -c "mayhem login && sync ./"
