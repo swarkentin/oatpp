@@ -30,8 +30,7 @@ WORKDIR /workdir/mayhem-harness
 RUN mkdir build \
   && cd build \
   && cmake  -DCMAKE_BUILD_TYPE=Debug .. \
-  && make && make test \
-  && ../scripts/get-coverage.sh
+  && make
 
 # Download mayhem cli
 RUN curl -u ${MAYHEM_CREDS} -o mayhem ${MAYHEM_URL}/images/mayhem && chmod +x mayhem &&  mv mayhem /usr/local/bin/

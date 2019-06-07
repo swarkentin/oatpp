@@ -45,7 +45,9 @@ done
 #
 # Put all of the coverage files together for sonarqube
 #
+gcovdir=$DIR/gcov
+mkdir -p $gcovdir
 for f in $(find . -name "*.gcov")
 do
-  cp $f coverage-results
+  cp $f $gcovdir
 done
