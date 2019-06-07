@@ -33,6 +33,6 @@ RUN mkdir build \
   && make
 
 # Download mayhem cli
-RUN curl -u ${MAYHEM_CREDS} -o mayhem ${MAYHEM_URL}/images/mayhem && chmod +x mayhem &&  mv mayhem /usr/local/bin/
+RUN curl -v -u ${MAYHEM_CREDS} -o mayhem ${MAYHEM_URL}/images/mayhem && chmod +x mayhem &&  mv mayhem /usr/local/bin/
 
 EXPOSE 8000 8000
