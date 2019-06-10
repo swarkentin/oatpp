@@ -1,7 +1,7 @@
 FROM forallsecure/debian-buster
 
-COPY build/mayhem-harness-exe /opt/mayhem
 WORKDIR /opt/mayhem
+COPY build/mayhem-harness-exe /opt/mayhem
 
 EXPOSE 8000 8000
 
