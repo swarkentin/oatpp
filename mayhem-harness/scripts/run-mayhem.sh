@@ -39,5 +39,3 @@ docker run --rm \
        -v $(pwd)/coverage-results:$(pwd)/mayhem-harness/coverage-results \
        $BUILD_TAG \
        /bin/bash -c "cd build && make test && cd .. && scripts/get-coverage.sh && cp gcov/* coverage-results/"
-
-ls -la $(pwd)/coverage-results

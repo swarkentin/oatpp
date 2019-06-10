@@ -32,7 +32,7 @@ WORKDIR /home/travis/build/swarkentin/oatpp/mayhem-harness
 RUN curl -o build-wrapper.zip https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip \
   && unzip build-wrapper.zip
 
-RUN ls -la && build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir bw_output ./build.sh
+RUN build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir bw_output ./build.sh
 
 # Download mayhem cli
 RUN curl -v -u ${MAYHEM_CREDS} -o mayhem ${MAYHEM_URL}/images/mayhem && chmod +x mayhem &&  mv mayhem /usr/local/bin/
