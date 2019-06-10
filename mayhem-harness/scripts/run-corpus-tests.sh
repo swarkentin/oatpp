@@ -8,8 +8,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 cd $DIR/..
 
 # Run each corpus test to gather coverage
-tests=$(ls corpus")
-for test in $tests
+for test in corpus/*
 do
   build/mayhem-harness-exe & sleep 1; nc 127.0.0.1 8000 < $test
 done
