@@ -2,7 +2,7 @@ version: '0.6'
 project: oatpp
 target: oatpp-mayhem-harness
 baseimage: beta.forallsecure.com:5000/forallsecure/oatpp-mayhem-harness
-duration: 600
+duration: 900
 
 cmds:
 - cmd: /opt/mayhem/mayhem-harness-exe
