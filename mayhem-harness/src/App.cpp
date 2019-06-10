@@ -32,9 +32,9 @@ class MyApiClient : public oatpp::web::client::ApiClient {
 #include OATPP_CODEGEN_END(ApiClient)
 
 // The amount of time to keep the server up and running
-const long SERVER_TIME_LIMIT_MILLIS = 5000;
+const long SERVER_TIME_LIMIT_MILLIS = -1;
 
-void run() {
+void run(long uptime_limit_millis) {
 
   /* Register Components in scope of run() method */
   AppComponent components;
@@ -60,32 +60,39 @@ void run() {
     server.run();
   });
 
-  std::thread stop_server([&server, &components](){
-    std::this_thread::sleep_for(std::chrono::milliseconds(SERVER_TIME_LIMIT_MILLIS));
-    std::cout << "Stopping server..." << std::endl;
+  if(uptime_limit_millis > 0){
+    std::thread stop_server([&server, &components, &uptime_limit_millis](){
+      std::this_thread::sleep_for(std::chrono::milliseconds(uptime_limit_millis));
+      std::cout << "Stopping server..." << std::endl;
 
-    server.stop();
-    components.serverConnectionHandler.getObject()->stop();
-    components.serverConnectionProvider.getObject()->close();
-  });
+      server.stop();
+      components.serverConnectionHandler.getObject()->stop();
+      components.serverConnectionProvider.getObject()->close();
+    });
 
-  // Wait for the server stop thread to finish
-  stop_server.join();
+    // Wait for the server stop thread to finish
+    stop_server.join();
 
-  // This doesn't seem to be needed ton MacOS, but when built in linux something needs
-  // to trigger the server to let go of the connection and shut down. There is a likely
-  // a better way tot do this, but this does work.
-  client->getHello();
+    // This doesn't seem to be needed ton MacOS, but when built in linux something needs
+    // to trigger the server to let go of the connection and shut down. There is a likely
+    // a better way tot do this, but this does work.
+    client->getHello();
+  }
 
   // Join the thread that ran the server before finishing.
   run_server.join();
 }
 
 int main(int argc, const char * argv[]) {
+  long uptime_millis = SERVER_TIME_LIMIT_MILLIS;
+
+  if(argc > 1){
+    uptime_millis = std::stol(argv[1]);
+  }
 
   oatpp::base::Environment::init();
 
-  run();
+  run(uptime_millis);
 
   /* Print how much objects were created during app running, and what have left-probably leaked */
   /* Disable object counting for release builds using '-D OATPP_DISABLE_ENV_OBJECT_COUNTERS' flag for better performance */
