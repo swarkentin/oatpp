@@ -82,6 +82,8 @@ add_library(oatpp
         oatpp/core/data/stream/BufferInputStream.hpp
         oatpp/core/data/stream/ChunkedBuffer.cpp
         oatpp/core/data/stream/ChunkedBuffer.hpp
+        oatpp/core/data/stream/FileStream.cpp
+        oatpp/core/data/stream/FileStream.hpp
         oatpp/core/data/stream/Stream.cpp
         oatpp/core/data/stream/Stream.hpp
         oatpp/core/data/stream/StreamBufferedProxy.cpp
@@ -95,6 +97,8 @@ add_library(oatpp
         oatpp/core/parser/ParsingError.hpp
         oatpp/core/utils/ConversionUtils.cpp
         oatpp/core/utils/ConversionUtils.hpp
+        oatpp/core/utils/Random.cpp
+        oatpp/core/utils/Random.hpp
         oatpp/encoding/Base64.cpp
         oatpp/encoding/Base64.hpp
         oatpp/encoding/Hex.cpp
@@ -139,14 +143,20 @@ add_library(oatpp
         oatpp/web/client/HttpRequestExecutor.hpp
         oatpp/web/client/RequestExecutor.cpp
         oatpp/web/client/RequestExecutor.hpp
-        oatpp/web/mime/multipart/InMemoryReader.cpp
-        oatpp/web/mime/multipart/InMemoryReader.hpp
+        oatpp/web/mime/multipart/FileStreamProvider.cpp
+        oatpp/web/mime/multipart/FileStreamProvider.hpp
+        oatpp/web/mime/multipart/InMemoryPartReader.cpp
+        oatpp/web/mime/multipart/InMemoryPartReader.hpp
         oatpp/web/mime/multipart/Multipart.cpp
         oatpp/web/mime/multipart/Multipart.hpp
         oatpp/web/mime/multipart/Part.cpp
         oatpp/web/mime/multipart/Part.hpp
+        oatpp/web/mime/multipart/Reader.cpp
+        oatpp/web/mime/multipart/Reader.hpp
         oatpp/web/mime/multipart/StatefulParser.cpp
         oatpp/web/mime/multipart/StatefulParser.hpp
+        oatpp/web/mime/multipart/StreamPartReader.cpp
+        oatpp/web/mime/multipart/StreamPartReader.hpp
         oatpp/web/protocol/CommunicationError.cpp
         oatpp/web/protocol/CommunicationError.hpp
         oatpp/web/protocol/http/Http.cpp
